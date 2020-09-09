@@ -1,34 +1,34 @@
 from mappings import *
 
-def applyCaesarCipher(plaintext_letter, key_letter):
+def applyCaesarDecrypt(plaintext_letter, key_letter):
     #skip space
     if plaintext_letter == " ":
         return " "
 
     plaintext = getLetterFromIndex(plaintext_letter)
     key = getLetterFromIndex(key_letter)
-    encryption = (plaintext + key) % 27
-    encryption_letter = getIndexFromLetter(encryption)
-    return encryption_letter
+    decryption = (plaintext - key) % 27
+    decryption_letter = getIndexFromLetter(decryption)
+    return decryption_letter
 
-def encrypt(stringToEncrypt, key):
-    lowercaseString = stringToEncrypt.lower()
+def decrypt(stringToDecrypt, key):
+    lowercaseString = stringToDecrypt.lower()
     lowercaseKey = key.lower()
 
     result = ""
     currentKeyIndex = 0 #holds the index of the key letter currently being used
 
     string_parts = lowercaseString.split() #remove spaces
-    new_string_parts = [] #will hold the encrypted string parts
+    new_string_parts = [] #will hold the decrypted string parts
     
     for part in string_parts:
         new_string_part = ""
         for i in range(len(part)):
             current_letter = part[i]
             current_key_letter = lowercaseKey[currentKeyIndex]
-            new_letter = applyCaesarCipher(current_letter, current_key_letter)
+            new_letter = applyCaesarDecrypt(current_letter, current_key_letter)
 
-            #encrypt the current letter to the new letter
+            #decrypt the current letter to the new letter
             #part[i] = new_letter
             new_string_part += new_letter
 
@@ -40,18 +40,19 @@ def encrypt(stringToEncrypt, key):
         new_string_parts.append(new_string_part)
 
     #join all parts of the string back together with space
-    encrypted_string = " ".join(new_string_parts)
-    return encrypted_string
-        
-"""
-print(applyCaesarCipher('a', '_')) #should be _
-print(applyCaesarCipher('r', 'k')) #should be A
-print(applyCaesarCipher('i', 'm')) #should be u
-print(applyCaesarCipher('z', 'o')) #should be m
-print(applyCaesarCipher('h', '_')) #should be G
+    decrypted_string = " ".join(new_string_parts)
+    return decrypted_string
+
+"""        
+print(applyCaesarDecrypt('s', 'a')) #should be s
+print(applyCaesarDecrypt('_', 's')) #should be i
+print(applyCaesarDecrypt('p', 'd')) #should be m
+print(applyCaesarDecrypt('u', 'f')) #should be p
+print(applyCaesarDecrypt('q', 'z')) #should be s
 """
 
-stringToEncrypt = "Simplestring_" 
+
+stringToDecrypt = "s_pulw vyr_ql_" 
 key = "asdf" #expected result: s_pulw vyr_ql_
 
-print(encrypt(stringToEncrypt, key))
+print(decrypt(stringToDecrypt, key))
