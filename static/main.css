@@ -1,0 +1,48 @@
+body {
+	/* Set main background color */	
+	background-color: #E6E6E8; /*platinum*/ 
+	font-family: verdana;
+	text-align:center;
+	
+	/*remove default space around header and footer*/
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+/*
+.headerButton{
+	background: linear-gradient(90deg, rgba(47,189,255,1) 0%, rgba(1,47,188,1) 100%);
+    width: 50%;
+	float: left;
+	margin: 0;
+}
+*/
+
+.box{
+	margin: 25px;
+}
+
+/*add centering to the form by restricting width and adding margin*/
+fieldset{
+	margin-left: 15%;
+	width: 70%;
+}
+
+/*refers to each combination of formLabels and formInputs*/
+.formContent{
+	display: flex;
+	margin: 5px;
+}
+
+/*Line up form labels closer to form inputs*/
+.formLabels{
+	text-align:right;
+	padding-right: 20px;
+	width: 40%
+}
+
+/*Line up form input boxes closer to form labels*/
+.formInputs{
+	text-align:left;
+	flex-grow:1;
+}

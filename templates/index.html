@@ -1,0 +1,69 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="static/main.css">
+<title>Vigenere Encoder/Decoder</title>
+</head>
+
+<body>
+<div class="header">
+    <div class="headerButton">
+	    <h1>Vigenere Encoder</h1>
+	</div>
+	<!--
+	<div class="headerButton">
+	    <h1>Vigenere Decode</h1>
+	</div>
+	-->
+</div>
+
+<div class='box'>
+<fieldset>
+	<legend>Enter Plaintext and Key</legend>
+	
+	<form action = '/encrypt' method = 'post'>
+	
+	<!-- Plaintext -->
+	<div class="formContent">
+		<div class="formLabels">
+			<label for="encode_text">Text</label>
+		</div>
+		
+		<div class="formInputs">
+			<input type="text" name="encode_text" required>
+		</div>
+	</div>
+	
+	<!-- Key -->
+	<div class="formContent">
+		<div class="formLabels">
+			<label for="encode_key">Key</label>
+		</div>
+		
+		<div class="formInputs">
+			<input type="text" name="encode_key" required>
+		</div>
+	</div>
+	
+	<input type='submit' value='Submit'/>
+	
+	</form>
+	
+</fieldset>
+
+<br>
+
+<form action="/todec">
+    <input type="submit" value="To Vigenere Decoder" />
+</form>
+
+<!--
+<form action = '/encrypt' method = 'post'>
+Text: <input type='text' name='encode_text'><br />
+Key: <input type='text' name='encode_key'><br />
+<input type='submit' value='Submit'/>
+-->
+
+</div>
+
+</body>
+</html>

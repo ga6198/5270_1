@@ -1,4 +1,24 @@
-from mappings import *
+#!C:/Program Files (x86)/Microsoft Visual Studio/Shared/Python37_64/python.exe
+
+import cgi, cgitb
+import sys
+import string
+#from ..CSC5270_HW1 import encrypt
+#import encrypt
+#from decrypt import decrypt
+
+def getLetterFromIndex(letter):
+    # _ is highest index at 26
+    if letter == "_":
+        return 26
+    else:
+        return string.ascii_lowercase.index(letter)
+
+def getIndexFromLetter(index):
+    if index == 26:
+        return "_"
+    else:
+        return string.ascii_lowercase[index]
 
 def applyCaesarCipher(plaintext_letter, key_letter):
     #skip space
@@ -42,17 +62,37 @@ def encrypt(stringToEncrypt, key):
     #join all parts of the string back together with space
     encrypted_string = " ".join(new_string_parts)
     return encrypted_string
-        
-"""
-print(applyCaesarCipher('a', '_')) #should be _
-print(applyCaesarCipher('r', 'k')) #should be A
-print(applyCaesarCipher('i', 'm')) #should be u
-print(applyCaesarCipher('z', 'o')) #should be m
-print(applyCaesarCipher('h', '_')) #should be G
-"""
 
-if __name__ == "__main__":
-    stringToEncrypt = "Simplestring_"
-    key = "asdf" #expected result: s_pulw vyr_ql_
+cgitb.enable()
+form = cgi.FieldStorage()
 
-    print(encrypt(stringToEncrypt, key))
+if form.getvalue("encode_text") and form.getvalue("encode_key"):
+    key = form.getvalue("encode_key")
+    text = form.getvalue("encode_text")
+    encrypted_string = encrypt(text, key)
+    print("<h2>Encrypted String: %s</h2>" % encrypted_string)
+
+"""
+print("Content-Type: text/html\r\n")
+print("<html>")
+print("<head>")
+print("<title>Vigenere Encoder/Decoder</title>")
+print("</head>")
+
+print("<body>")
+print("<h1>Vigenere Encode</h1>")
+
+#encryption box
+print("<div class='box'>")
+print("<form action = 'main.py' method = 'post'>")
+print("Key: <input type='text' name='encode_key'><br />")
+print("Text: <input type='text' name='encode_text'><br />")
+print("<input type='submit' value='submit'/>")
+
+#print("%s" % sys.version)
+#print("%s" % sys.prefix)
+print("</div>")
+
+print("</body>")
+print("</html>")
+"""

@@ -1,0 +1,62 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="static/main.css">
+<title>Vigenere Encoder/Decoder</title>
+</head>
+
+<body>
+<div class="header">
+    <div class="headerButton">
+	    <h1>Vigenere Decoder</h1>
+	</div>
+	<!--
+	<div class="headerButton">
+	    <h1>Vigenere Decode</h1>
+	</div>
+	-->
+</div>
+
+<div class='box'>
+<fieldset>
+	<legend>Enter Ciphertext and Key</legend>
+	
+	<form action = '/decrypt' method = 'post'>
+	
+	<!-- Plaintext -->
+	<div class="formContent">
+		<div class="formLabels">
+			<label for="decode_text">Text</label>
+		</div>
+		
+		<div class="formInputs">
+			<input type="text" name="decode_text" required>
+		</div>
+	</div>
+	
+	<!-- Key -->
+	<div class="formContent">
+		<div class="formLabels">
+			<label for="decode_key">Key</label>
+		</div>
+		
+		<div class="formInputs">
+			<input type="text" name="decode_key" required>
+		</div>
+	</div>
+	
+	<input type='submit' value='Submit'/>
+	
+	</form>
+	
+</fieldset>
+
+<br>
+
+<form action="/toenc">
+    <input type="submit" value="To Vigenere Encoder" />
+</form>
+
+</div>
+
+</body>
+</html>
