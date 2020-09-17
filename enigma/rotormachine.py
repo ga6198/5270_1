@@ -130,14 +130,17 @@ class RotorMachine:
         
 
     def swap_rotors(self, rotor1, rotor2):
-        temp_rotor = rotor1
-        rotor1 = rotor2
-        rotor2 = temp_rotor
+        #switch only the value_pairs
+        temp_rotor = rotor1.value_pairs
+        rotor1.value_pairs = rotor2.value_pairs
+        rotor2.value_pairs = temp_rotor
 
         #switch their times
-        temp_time = rotor1.time_left_to_rotation
-        rotor1.time_left_to_rotation = rotor2.time_left_to_rotation
-        rotor2.time_left_to_rotation = temp_time
+        #temp_max = 
+        
+        #temp_time = rotor1.time_left_to_rotation
+        #rotor1.time_left_to_rotation = rotor2.time_left_to_rotation
+        #rotor2.time_left_to_rotation = temp_time
         
         #rotor1.print()
         #rotor2.print()
