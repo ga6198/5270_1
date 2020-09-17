@@ -14,7 +14,7 @@ class Window:
         #left rotor
         self.left_rotor=tk.Button(window, height=30, width=10)
         self.left_rotor.place(x=45, y=45)
-        #self.left_rotor.bind("<Button-1>", self.shift_left_rotor)
+        self.left_rotor.bind("<Button-1>", self.move_left_rotor)
         
         self.left_rotor_left=tk.Label(window, text=self.machine.slow_rotor.get_left_values())
         self.left_rotor_left.place(x=50, y=50)
@@ -29,6 +29,7 @@ class Window:
         #middle rotor
         self.middle_rotor=tk.Button(window, height=30, width=10)
         self.middle_rotor.place(x=150, y=45)
+        self.middle_rotor.bind("<Button-1>", self.move_middle_rotor)
 
         self.middle_rotor_left=tk.Label(window, text=self.machine.medium_rotor.get_left_values())
         self.middle_rotor_left.place(x=155, y=50)
@@ -43,6 +44,7 @@ class Window:
         #right rotor
         self.right_rotor=tk.Button(window, height=30, width=10)
         self.right_rotor.place(x=250, y=45)
+        self.right_rotor.bind("<Button-1>", self.move_right_rotor)
 
         self.right_rotor_left=tk.Label(window, text=self.machine.fast_rotor.get_left_values())
         self.right_rotor_left.place(x=255, y=50)
@@ -116,6 +118,34 @@ class Window:
         self.machine.fast_rotor.shift()
         self.right_rotor_left['text'] = self.machine.fast_rotor.get_left_values()
         self.right_rotor_right['text'] = self.machine.fast_rotor.get_right_values()
+
+    #move the rotor's position to the right
+    def move_left_rotor(self, event):
+        #slow rotor switches with medium rotor
+        self.machine.slow_rotor, self.machine.medium_rotor = self.machine.swap_rotors(self.machine.slow_rotor, self.machine.medium_rotor)
+        self.machine.slow_rotor.print()
+        self.machine.medium_rotor.print()
+        
+        self._update_view()
+
+    #move the rotor's position to the right
+    def move_middle_rotor(self, event):
+        #medium rotor switches with fast rotor
+        self.machine.medium_rotor, self.machine.fast_rotor = self.machine.swap_rotors(self.machine.medium_rotor, self.machine.fast_rotor)
+        self.machine.medium_rotor.print()
+        self.machine.fast_rotor.print()
+        
+        self._update_view()
+
+    #move the rotor's position to the right
+    def move_right_rotor(self, event):
+        #fast rotor switches with slow rotor
+        self.machine.fast_rotor, self.machine.slow_rotor = self.machine.swap_rotors(self.machine.fast_rotor, self.machine.slow_rotor)
+        self.machine.fast_rotor.print()
+        self.machine.slow_rotor.print()
+        
+        self._update_view()
+        
 
     def encrypt(self, event, arg):
         print(arg)

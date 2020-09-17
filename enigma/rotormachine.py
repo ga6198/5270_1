@@ -129,12 +129,20 @@ class RotorMachine:
         return final_letter
         
 
-    def shift_rotors(self):
-        self.slow_rotor_max()
-        pass
+    def swap_rotors(self, rotor1, rotor2):
+        temp_rotor = rotor1
+        rotor1 = rotor2
+        rotor2 = temp_rotor
 
-    def shift_rotor(self, distance_to_shift):
-        pass
+        #switch their times
+        temp_time = rotor1.time_left_to_rotation
+        rotor1.time_left_to_rotation = rotor2.time_left_to_rotation
+        rotor2.time_left_to_rotation = temp_time
+        
+        #rotor1.print()
+        #rotor2.print()
+
+        return rotor1, rotor2
         
 
 if __name__ == "__main__":
